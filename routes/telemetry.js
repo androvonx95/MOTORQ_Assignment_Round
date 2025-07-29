@@ -2,14 +2,21 @@ const express = require('express');
 const router = express.Router();
 const telemetry = require('../data/telemetry');
 
+
+const alertModule = require('./alerts.js');
+const validate = alertModule.validate;
+
+
+
 // receive data for one vehicle
 router.post('/', (req, res) => {
+    console.log('Received body:', req.body); // Add this line
     const { vin, ...data } = req.body;
     if (!vin) {
         return res.status(400).json({ error: 'VIN is required' });
     }
     
-    telemetry.addTelemetry(vin, data);
+    telemetry.addTelemetry( req.body );
     res.status(201).json({ message: 'Telemetry data received' });
 });
 

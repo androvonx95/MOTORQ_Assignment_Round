@@ -23,7 +23,7 @@ router.get('/fleet', (req, res) => {
 
 // Get specific fleet analytics
 router.get('/fleet/:fleetId', (req, res) => {
-    const { fleetId } = req.params.fleetId;
+    const { fleetId } = req.params;
     try {
         const fleetData = analytics.fleetData[fleetId];
         if (!fleetData) {

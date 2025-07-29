@@ -1,4 +1,4 @@
-const vehicles = {};
+const vehicles = [];
 
 module.exports = {
   vehicles

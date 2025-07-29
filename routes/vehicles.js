@@ -12,29 +12,36 @@ router.get('/all', (req, res) => {
 });
 
 // POST /new
-router.post( '/new' , (req,res) => {
-    vin = req.body.vin;
-    model = req.body.Model; 
-    fleetID = req.body.fleetID;
-    operator = req.body.operator;
-    regStatus = req.body.regStatus;
+router.post('/new', (req, res) => {
+    const vin = req.body.vin;
+    const model = req.body.Model; 
+    const fleetID = req.body.fleetID;
+    const operator = req.body.operator;
+    const regStatus = req.body.regStatus;
 
-    let vehiclesObj = {
-        vin ,
-        model ,
-        fleetID ,
-        operator ,
+    const vehiclesObj = {
+        vin,
+        model,
+        fleetID,
+        operator,
         regStatus
-    }
+    };
 
-    vehicles.push( vehiclesObj );
-} );
+    vehicles.vehicles.push(vehiclesObj);
+
+    // Send a success response
+    res.status(201).json({
+        message: "Vehicle added successfully",
+        vehicle: vehiclesObj
+    });
+});
+
 
 // GET /:{id} vehicle by ID
 router.get('/:id', (req, res) => {
     let vehiclesID = req.params.id;
     let vehicleObj = vehicles.vehicles.find( (obj) => {
-        obj.vin = vehiclesID;
+        return obj.vin === vehiclesID;
     } );
     if (vehicleObj){
         res.status( 200 );

@@ -1,0 +1,113 @@
+# Vehicle Management API
+
+@baseUrl = http://localhost:3000
+
+### Telemetry Endpoints
+
+# POST /telemetry
+# Receive telemetry data for one vehicle
+POST {{baseUrl}}/telemetry
+Content-Type: application/json
+
+{
+    "vin": "1HGCM82633A123456",
+    "GPS_coordinates": {
+        "latitude": 40.7128,
+        "longitude": -74.0060
+    },
+    "Speed": 65,
+    "Engine_status": "On",
+    "Fuel_Battery_level": 75,
+    "Odometer_reading": 123456,
+    "Diagnostic_codes": []
+}
+
+# GET /telemetry/{vin}
+# Get last 24h history for a vehicle
+GET {{baseUrl}}/telemetry/1HGCM82633A123456
+
+# GET /telemetry/{vin}/latest
+# Get most recent telemetry reading
+GET {{baseUrl}}/telemetry/1HGCM82633A123456/latest
+
+### Analytics Endpoints
+
+# GET /analytics/fleet
+# Get analytics for all fleets
+GET {{baseUrl}}/analytics/fleet
+
+# GET /analytics/fleet/{fleetId}
+# Get analytics for specific fleet
+GET {{baseUrl}}/analytics/fleet/Corporate
+
+# GET /analytics/overview
+# Get overall fleet analytics
+GET {{baseUrl}}/analytics/overview
+
+# GET /analytics/alerts
+# Get alert summary
+GET {{baseUrl}}/analytics/alerts
+
+### Response Examples
+
+# Telemetry POST Response
+{
+    "message": "Telemetry data received"
+}
+
+# Fleet Analytics Response
+[
+    {
+        "fleetId": "Corporate",
+        "vehicleCount": 50,
+        "activeVehicles": 45,
+        "inactiveVehicles": 5,
+        "avgFuelLevel": 75.2,
+        "totalDistance": 1234567.89,
+        "alerts": {
+            "byType": {
+                "Engine": 3,
+                "Battery": 1
+            },
+            "bySeverity": {
+                "High": 2,
+                "Medium": 2
+            }
+        }
+    }
+]
+
+# Overview Response
+{
+    "totalVehicles": 150,
+    "totalActive": 140,
+    "totalInactive": 10,
+    "avgFuelLevel": 74.5,
+    "totalDistance": 3703603.67,
+    "alerts": {
+        "byType": {
+            "Engine": 9,
+            "Battery": 3,
+            "Maintenance": 2
+        },
+        "bySeverity": {
+            "High": 5,
+            "Medium": 7,
+            "Low": 2
+        }
+    }
+}
+
+# Alert Summary Response
+{
+    "byType": {
+        "Engine": 9,
+        "Battery": 3,
+        "Maintenance": 2
+    },
+    "bySeverity": {
+        "High": 5,
+        "Medium": 7,
+        "Low": 2
+    }
+}

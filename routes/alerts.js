@@ -28,6 +28,8 @@ const alerts = require('../data/alerts.js');
 //     'timestamp':
 // ]
 
+
+
 function getTimeStamp(){
     return '2021-03-24T00:00:00'
 }
@@ -66,41 +68,17 @@ router.get('/all', (req, res) => {
 
 // get alert by ID
 router.get('/:id', (req, res) => {
-    let alertID = req.params;
-    if ( alertID < alerts.alerts.length ){
-        res.send( alerts.alerts[ alertID] );
+    let alertID = parseInt(req.params.id);  // Convert to number
+
+    if (alertID >= 0 && alertID < alerts.length) {
+        res.send(alerts[alertID]);
+    } else {
+        res.status(404).json({ error: "Alert not found" });
     }
-    else{
-        res.status(404)
-        res.send( "Sorry bud this AlertID does not exist");
-    }
+
 })
 
 
 console.log( data );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;
