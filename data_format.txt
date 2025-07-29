@@ -1,0 +1,32 @@
+
+
+Alert Info
+[
+
+    'id' : 
+    'vin' :
+    'type' :
+    'severity':
+    'timestamp':
+]
+
+
+Vehicle info
+[
+    VIN:
+    Manufacturer and Model:
+    Fleet ID :(vehicles can belong to different fleets like "Corporate", "Rental", "Personal")
+    Owner/Operator :
+    Registration status: (Active, Maintenance, Decommissioned)
+]
+
+Telemetry info
+[
+    GPS coordinates : (latitude, longitude)
+    Speed : (current speed in km/h)
+    Engine status : (On/Off/Idle)
+    Fuel/Battery level :(percentage)
+    Odometer reading : (total kilometers)
+    Diagnostic codes :(if any errors)
+    Timestamp:
+]
