@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const telemetry = require('../data/telemetry');
 
-// POST /telemetry - Receive data for one vehicle
+// receive data for one vehicle
 router.post('/', (req, res) => {
     const { vin, ...data } = req.body;
     if (!vin) {
@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
     res.status(201).json({ message: 'Telemetry data received' });
 });
 
-// GET /telemetry/{vin} - Last 24h history
+// last 24h history
 router.get('/:vin', (req, res) => {
     const vin = req.params.vin;
     const history = telemetry.getHistory(vin);
@@ -25,7 +25,7 @@ router.get('/:vin', (req, res) => {
     res.json(history);
 });
 
-// GET /telemetry/{vin}/latest - Most recent reading
+// Most recent reading
 router.get('/:vin/latest', (req, res) => {
     const vin = req.params.vin;
     const latest = telemetry.getLatest(vin);
