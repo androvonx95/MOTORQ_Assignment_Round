@@ -22,6 +22,7 @@ Vehicle info
 
 Telemetry info
 [
+    VIN : Vehicle ID 
     GPS coordinates : (latitude, longitude)
     Speed : (current speed in km/h)
     Engine status : (On/Off/Idle)
