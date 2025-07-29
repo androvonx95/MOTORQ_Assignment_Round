@@ -12,7 +12,10 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+app.use('/alerts', require('./routes/alerts.js'));
+app.use('/analytics', require('./routes/analytics.js'));
 app.use('/telemetry', require('./routes/telemetry'));
+app.use('/vehicles', require('./routes/vehicles.js'));
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
